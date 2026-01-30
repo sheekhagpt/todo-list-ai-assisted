@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Make it responsive on mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo List</title>
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!--
+    Main page container.
+    Using <main> for semantic structure.
+  -->
+    <main class="app">
+      <!--
+      App header with title.
+      The title clearly describes the page purpose.
+    -->
+      <header class="app__header">
+        <h1 class="app__title">Todo List</h1>
+        <p class="app__subtitle">Stay organized with your daily tasks</p>
+      </header>
+
+      <!--
+      Todo input area wrapped in a <section> and <form>.
+      The form lets us handle "Enter" key submissions easily.
+    -->
+      <section class="todo-input-section">
+        <form id="todo-form" class="todo-form" autocomplete="off">
+          <!-- Label is visually hidden but kept for accessibility -->
+          <label for="todo-input" class="visually-hidden">Add a new todo</label>
+          <input
+            id="todo-input"
+            class="todo-form__input"
+            type="text"
+            placeholder="What do you need to do?"
+            aria-label="Todo text"
+          />
+          <button type="submit" id="add-todo-btn" class="todo-form__button">
+            Add
+          </button>
+        </form>
+        <!--
+        Small area to display inline messages, like validation.
+      -->
+        <p id="todo-message" class="todo-message" aria-live="polite"></p>
+      </section>
+
+      <!--
+      Controls section: filters and counter.
+      This affects how todos are viewed, not the data itself.
+    -->
+      <section class="todo-controls" aria-label="Todo filters and stats">
+        <div class="todo-filters" role="radiogroup" aria-label="Filter todos">
+          <!--
+          Filter buttons.
+          data-filter attribute is used in JS to know which filter is active.
+        -->
+          <button
+            type="button"
+            class="filter-button filter-button--active"
+            data-filter="all"
+            aria-pressed="true"
+          >
+            All
+          </button>
+          <button
+            type="button"
+            class="filter-button"
+            data-filter="pending"
+            aria-pressed="false"
+          >
+            Pending
+          </button>
+          <button
+            type="button"
+            class="filter-button"
+            data-filter="completed"
+            aria-pressed="false"
+          >
+            Completed
+          </button>
+        </div>
+
+        <!--
+        Counter showing how many todos exist.
+      -->
+        <div class="todo-counter">
+          Total todos: <span id="todo-count">0</span>
+        </div>
+      </section>
+
+      <!--
+      Todo list container.
+      Using <ul> for semantic list of items.
+      aria-live makes screen readers announce updates.
+    -->
+      <section class="todo-list-section" aria-label="Todo list">
+        <ul id="todo-list" class="todo-list" aria-live="polite"></ul>
+      </section>
+    </main>
+
+    <!-- Link to external JavaScript -->
+    <script src="script.js"></script>
+  </body>
+</html>
